@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --background: #eef2f6;
+  --foreground: #0f172a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background: linear-gradient(160deg, #f3f5f8 0%, #dde2e9 55%, #d0d7e0 100%);
+  background-attachment: fixed;
+}
+
+/* ---------- Liquid Glass ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(34px) saturate(200%);
+  -webkit-backdrop-filter: blur(34px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 12px 40px rgba(31, 38, 135, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.glass-dark {
+  background: rgba(6, 17, 52, 0.82);
+  backdrop-filter: blur(34px) saturate(200%);
+  -webkit-backdrop-filter: blur(34px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 12px 40px rgba(6, 17, 52, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20);
+}
+
+/* ---------- Aurora background blobs ---------- */
+.aurora {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+.aurora::before,
+.aurora::after,
+.aurora span {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.65;
+}
+.aurora::before {
+  width: 48vw; height: 48vw;
+  background: #ffffff; /* brilho claro suave */
+  top: -10vw; left: -8vw;
+  opacity: 0.5;
+  animation: float1 18s ease-in-out infinite;
+}
+.aurora::after {
+  width: 44vw; height: 44vw;
+  background: #c2cad6; /* cinza um pouco mais escuro (profundidade) */
+  bottom: -12vw; right: -8vw;
+  opacity: 0.5;
+  animation: float2 22s ease-in-out infinite;
+}
+.aurora span {
+  width: 30vw; height: 30vw;
+  background: #dfe4ec; /* cinza claro */
+  top: 36vh; left: 46vw;
+  opacity: 0.4;
+  animation: float3 20s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6vw, 8vh) scale(1.1); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8vw, -6vh) scale(1.15); }
+}
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-6vw, 4vh) scale(0.9); }
+}
+
+/* ---------- Pop-up (modal) ---------- */
+.modal-backdrop { animation: fadeIn 0.18s ease-out; }
+.modal-pop { animation: modalPop 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modalPop {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
